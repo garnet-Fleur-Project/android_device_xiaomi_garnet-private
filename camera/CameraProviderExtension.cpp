@@ -43,15 +43,13 @@ bool supportsSetTorchModeExt() {
 }
 
 int32_t getTorchDefaultStrengthLevelExt() {
-    // Our default value is 75. This corresponds to 15%.
-    // As we have changed the maximum value, 59% now corresponds to 75.
-    return 59;
+    // // Dropped by 17 to match new max cap
+    return 42;
 }
 
 int32_t getTorchMaxStrengthLevelExt() {
-    // 255 out of 500 is a sane brightness.
-    // Let's cap it to 255 as max, we can go much higher, but I don't want to test this.
-    return 255;
+    // Capping max brightness lower to 238 for extra safety.
+    return 238;
 }
 
 int32_t getTorchStrengthLevelExt() {
