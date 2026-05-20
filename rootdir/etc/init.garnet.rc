@@ -88,6 +88,19 @@ on property:sys.boot_completed=1
     # Enable PowerHAL hint processing
     setprop vendor.powerhal.init 1
 
+service vendor.thermal_action /vendor/bin/thermal_action.sh ${persist.sys.thermal.disable}
+    class core
+    user root
+    group root system
+    disabled
+    oneshot
+
+on property:persist.sys.thermal.disable=1
+    start vendor.thermal_action
+
+on property:persist.sys.thermal.disable=0
+    start vendor.thermal_action
+
 service vendor.audio-hal /vendor/bin/hw/android.hardware.audio.service
     override
     class hal

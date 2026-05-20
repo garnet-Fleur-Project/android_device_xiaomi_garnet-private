@@ -98,7 +98,11 @@ public class BootCompletedReceiver extends BroadcastReceiver {
         if (DEBUG) Log.i(TAG, "Starting services...");
 
         // Start Thermal Management Services
-        ThermalUtils.getInstance(context).startService();
+        ThermalUtils thermalUtils = ThermalUtils.getInstance(context);
+        thermalUtils.startService();
+        if (thermalUtils.getThermalThrottlingDisabled()) {
+            org.lineageos.settings.utils.FileUtils.setSystemProperty("persist.sys.thermal.disable", "1");
+        }
 
         // Start Refresh Rate Services
         RefreshUtils.startService(context);

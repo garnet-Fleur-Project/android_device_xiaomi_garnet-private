@@ -28,6 +28,14 @@ private constructor(
     private val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context)
     private val serviceIntent = Intent(context, ThermalService::class.java)
 
+    var thermalThrottlingDisabled: Boolean = sharedPrefs.getBoolean(THERMAL_THROTTLING_DISABLED, false)
+        set(value) {
+            if (field == value) return
+            field = value
+            sharedPrefs.edit().putBoolean(THERMAL_THROTTLING_DISABLED, value).apply()
+            FileUtils.setSystemProperty("persist.sys.thermal.disable", if (value) "1" else "0")
+        }
+
     var enabled: Boolean = sharedPrefs.getBoolean(THERMAL_ENABLED, false)
         set(value) {
             if (field == value) return
@@ -161,6 +169,7 @@ private constructor(
         private const val TAG = "ThermalUtils"
         private const val THERMAL_CONTROL = "thermal_control_v2"
         private const val THERMAL_ENABLED = "thermal_enabled"
+        private const val THERMAL_THROTTLING_DISABLED = "thermal_throttling_disabled"
 
         private const val THERMAL_SCONFIG = "/sys/class/thermal/thermal_message/sconfig"
         private const val THERMAL_STATE_DEFAULT = "20" // thermal-mgame.conf

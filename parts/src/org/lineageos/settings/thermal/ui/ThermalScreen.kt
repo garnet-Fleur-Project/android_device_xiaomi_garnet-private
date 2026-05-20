@@ -124,6 +124,45 @@ fun ThermalScreen(
                 }
             }
             
+            // Disable Thermal Throttling Card
+            Card(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp, vertical = 8.dp)
+            ) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Column(modifier = Modifier.weight(1f)) {
+                        Text(
+                            text = stringResource(R.string.thermal_throttling_disable),
+                            style = MaterialTheme.typography.titleMedium
+                        )
+                        Text(
+                            text = stringResource(R.string.thermal_throttling_disable_summary),
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                    }
+                    Switch(
+                        checked = uiState.isThrottlingDisabled,
+                        onCheckedChange = { viewModel.toggleThermalThrottlingDisabled(it) },
+                        thumbContent = {
+                            Icon(
+                                imageVector = if (uiState.isThrottlingDisabled) Icons.Filled.Check else Icons.Filled.Close,
+                                contentDescription = null,
+                                modifier = Modifier.size(16.dp),
+                                tint = MaterialTheme.colorScheme.onPrimary
+                            )
+                        }
+                    )
+                }
+            }
+            
             // Apps List
             AnimatedVisibility(
                 visible = uiState.isEnabled,

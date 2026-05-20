@@ -46,6 +46,12 @@ prebuilt_etc {
     vendor: true,
 }
 
+sh_binary {
+    name: "thermal_action.sh",
+    src: "bin/thermal_action.sh",
+    vendor: true,
+}
+
 prebuilt_etc {
     name: "init.garnet.rc",
     src: "etc/init.garnet.rc",

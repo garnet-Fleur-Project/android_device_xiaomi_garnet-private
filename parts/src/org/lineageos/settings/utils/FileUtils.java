@@ -157,4 +157,16 @@ public final class FileUtils {
         }
         return ok;
     }
+
+    /**
+     * Sets a system property.
+     * Wrapper for android.os.SystemProperties to avoid Kotlin hidden API access issues.
+     */
+    public static void setSystemProperty(String key, String value) {
+        try {
+            android.os.SystemProperties.set(key, value);
+        } catch (Exception e) {
+            Log.e(TAG, "Failed to set system property: " + key, e);
+        }
+    }
 }

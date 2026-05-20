@@ -1,0 +1,18 @@
+type thermal_action, domain;
+type thermal_action_exec, exec_type, vendor_file_type, file_type;
+
+init_daemon_domain(thermal_action)
+
+allow thermal_action vendor_toolbox_exec:file execute_no_trans;
+allow thermal_action vendor_file:file execute_no_trans;
+
+# Allow setting props and modifying sysfs for thermal control
+allow thermal_action vendor_sysfs_corecontrol:file w_file_perms;
+allow thermal_action vendor_sysfs_corecontrol:dir search;
+
+allow thermal_action sysfs_kgsl:file w_file_perms;
+allow thermal_action sysfs_kgsl:dir search;
+
+allow thermal_action sysfs_devices_system_cpu:file w_file_perms;
+
+set_prop(thermal_action, vendor_thermal_normal_prop)

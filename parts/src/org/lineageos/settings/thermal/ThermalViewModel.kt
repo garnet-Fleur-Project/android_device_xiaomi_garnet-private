@@ -99,6 +99,12 @@ class ThermalViewModel(
         }
     }
 
+    fun toggleThermalThrottlingDisabled(disabled: Boolean) {
+        Logging.d(TAG, "toggleThermalThrottlingDisabled: $disabled")
+        thermalUtils.thermalThrottlingDisabled = disabled
+        _uiState.update { it.copy(isThrottlingDisabled = disabled) }
+    }
+
     fun updateAppThermalState(packageName: String, state: ThermalState) {
         Logging.d(TAG, "updateAppThermalState: $packageName -> $state")
         thermalUtils.writePackage(packageName, state.id)
