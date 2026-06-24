@@ -476,3 +476,26 @@ $(call inherit-product, vendor/xiaomi/garnet/garnet-vendor.mk)
 
 # Vendor MiuiCamera
 $(call inherit-product-if-exists, device/xiaomi/garnet-miuicamera/device.mk)
+
+
+
+# Bootanimation
+PRODUCT_COPY_FILES += \
+    device/xiaomi/garnet/overlay-media/media/bootanimation.zip:$(TARGET_COPY_OUT_PRODUCT)/media/bootanimation.zip
+
+# GAPPS
+$(call inherit-product-if-exists, vendor/gapps/arm64/arm64-vendor.mk)
+
+# Overlay Update server-link
+DEVICE_PACKAGE_OVERLAYS += \
+    $(LOCAL_PATH)/overlay-lineage
+
+# Remove packages
+PRODUCT_PACKAGES += \
+    RemovePackages
+
+#BCR
+$(call inherit-product-if-exists, vendor/bcr/bcr.mk)
+
+# Import my keys
+-include vendor/lineage-priv/keys/keys.mk
