@@ -1,3 +1,8 @@
+# --- Google Pay & Integrity ---
+remote_provisioning.enable_rkpd=true
+remote_provisioning.hostname=remoteprovisioning.googleapis.com
+ro.build.tags=release-keys
+
 # Audio
 aaudio.hw_burst_min_usec=2000
 aaudio.mmap_exclusive_policy=2
@@ -53,6 +58,9 @@ vendor.qc2audio.per_frame.flac.dec.enabled=true
 vendor.qc2audio.suspend.enabled=true
 
 # Bluetooth
+bluetooth.auto_connect_profiles.enabled=true
+bluetooth.device_id.vendor_id=0x001D
+bluetooth.profile.bas.client.enabled=true
 bluetooth.profile.asha.central.enabled=true
 persist.bluetooth.a2dp_offload.disabled=false
 persist.vendor.btstack.enable.twsplus=true 
