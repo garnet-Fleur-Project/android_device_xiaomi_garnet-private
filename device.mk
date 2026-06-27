@@ -130,8 +130,8 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.camera.raw.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.raw.xml
 
 # Device-specific settings
-PRODUCT_PACKAGES += \
-    XiaomiParts
+#PRODUCT_PACKAGES += \
+#    XiaomiParts
 
 # Display
 PRODUCT_PACKAGES += \
@@ -228,7 +228,7 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.consumerir.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.consumerir.xml
 
 # JamesDSP
-$(call inherit-product, packages/apps/JamesDSP/config.mk)
+#$(call inherit-product, packages/apps/JamesDSP/config.mk)
 
 # Keylayout
 PRODUCT_COPY_FILES += \
@@ -477,14 +477,12 @@ $(call inherit-product, vendor/xiaomi/garnet/garnet-vendor.mk)
 # Vendor MiuiCamera
 $(call inherit-product-if-exists, device/xiaomi/garnet-miuicamera/device.mk)
 
-
-
 # Bootanimation
 PRODUCT_COPY_FILES += \
     device/xiaomi/garnet/overlay-media/media/bootanimation.zip:$(TARGET_COPY_OUT_PRODUCT)/media/bootanimation.zip
 
 # GAPPS
-$(call inherit-product-if-exists, vendor/gapps/arm64/arm64-vendor.mk)
+#$(call inherit-product-if-exists, vendor/gapps/arm64/arm64-vendor.mk)
 
 # Overlay Update server-link
 DEVICE_PACKAGE_OVERLAYS += \
